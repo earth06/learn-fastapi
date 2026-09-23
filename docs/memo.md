@@ -1,0 +1,5 @@
+# fastapiハマったこと
+
+
+* 型ヒントを見てfastapiはクエリか、フォームかを判断しているため、型ヒントは必須
+* TemplateResponseは必ずrequestが必要なのでブラウザからwebサーバーが受け取ったrequestをResuestオブジェクトとしてfastapiが受け取る必要がある
