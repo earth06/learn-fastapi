@@ -54,7 +54,7 @@ wheels = [
 ]
 
 [[package]]
-name = "cti-c-thunder-web"
+name = "learn-fastapi"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
