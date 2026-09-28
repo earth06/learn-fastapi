@@ -14,8 +14,8 @@ uv run uvicorn app.main:app --reload
 
 * 01-html-http
 * 02-javascript
-* 03-dom-events
-* 04-fetch-fastapi
+* 03-dom
+* 04-api
 * 05-crud
 * 06-async-and-error-handle
 * 07-forms
