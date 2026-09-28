@@ -1,0 +1,38 @@
+services:
+  obsdb:
+    image: postgres:16
+    container_name: mydb
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      TZ: Asia/Tokyo
+    ports:
+      - "5433:5432"
+    volumes:
+      - mydb_data:/var/lib/postgresql/data
+      - ./sample/rdbms/:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+
+  valkey:
+    image: valkey/valkey:8
+    container_name: myvalkey
+    command: ["valkey-server", "--requirepass", mypassword", "--appendonly", "yes"]
+    ports:
+      - "6378:6379"
+    volumes:
+      - valkey_data:/data
+    healthcheck:
+      test: ["CMD", "valkey-cli", "-a", "mypassword", "PING"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mydb_data:
+  valkey_data:
